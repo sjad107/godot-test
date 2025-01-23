@@ -1,5 +1,5 @@
 extends RigidBody2D
-
+signal kill
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,4 +19,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_mob_ass_area_entered(area: Area2D) -> void:
 	queue_free() # Replace with function body.
+	kill.emit()
 	$MobAss/CollisionShape2D.set_deferred("disabled", true)
