@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://8mddwaumij4o"]
+[gd_scene load_steps=11 format=3 uid="uid://8mddwaumij4o"]
 
-[ext_resource type="Script" path="res://mob.gd" id="1_unk2h"]
+[ext_resource type="Script" path="res://Scripts/mob.gd" id="1_unk2h"]
 [ext_resource type="Texture2D" uid="uid://b47hfwteek33" path="res://art/enemyFlyingAlt_1.png" id="1_whur4"]
 [ext_resource type="Texture2D" uid="uid://bn04gtvlqmis6" path="res://art/enemyFlyingAlt_2.png" id="2_1guab"]
 [ext_resource type="Texture2D" uid="uid://j7p3mbnsqu7h" path="res://art/enemySwimming_1.png" id="3_vgph2"]
@@ -44,26 +44,44 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_515a4"]
-radius = 36.0
-height = 100.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkxp1"]
+size = Vector2(72, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gqju"]
+size = Vector2(72, 49)
 
 [node name="Mob" type="RigidBody2D" groups=["mobs"]]
 position = Vector2(-1, 0)
+collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_unk2h")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 24.5)
 rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_l80hx")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_515a4")
+position = Vector2(0, 49)
+shape = SubResource("RectangleShape2D_nkxp1")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 24.5)
 
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="MobAss" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobAss"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0gqju")
+
+[node name="Label" type="Label" parent="MobAss"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Ass"
+
+[connection signal="area_entered" from="MobAss" to="." method="_on_mob_ass_area_entered"]
