@@ -223,8 +223,11 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(250, 252)
+position = Vector2(243, 229)
 script = ExtResource("1_gqy8q")
+
+[node name="Sword" parent="." instance=ExtResource("3_b8b7d")]
+position = Vector2(50, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1o01h")
@@ -232,7 +235,8 @@ shape = SubResource("CapsuleShape2D_1o01h")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_su1k4")
-animation = &"IDLE"
+animation = &"ROLL"
+frame_progress = 0.811065
 offset = Vector2(-0.137131, -5.10722)
 
 [node name="RollTime" type="Timer" parent="."]
@@ -244,6 +248,3 @@ one_shot = true
 process_callback = 0
 wait_time = 0.1
 one_shot = true
-
-[node name="Sword" parent="." instance=ExtResource("3_b8b7d")]
-position = Vector2(52, -10)
